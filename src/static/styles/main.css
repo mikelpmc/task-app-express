@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+    background: url('/static/images/bg.png');
+    font-family: 'Raleway', sans-serif;
+}
+
+.card-container {
+    padding: 3em;
+}
+
+.logo {
+    width: 80px;
+}
+
+.no-margin {
+    margin-bottom: 0;
+}

@@ -1,0 +1,52 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title EXPRESS TASK APP
+    link(rel='shortcut icon', href='/static/favicon.ico', type='image/x-icon')
+    link(rel='icon', href='static/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/static/vendor/bootstrap/4.1.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/static/styles/main.css')
+  body
+    .jumbotron
+      h1
+        img.img-fluid.logo(src='/static/images/express-logo.png', alt='Express logo')
+        span.text-warning  Ex
+        | press Task App
+    .container-fluid
+      .card.card-container
+        .row.justify-content-center
+          .col-6
+            h4 ADD NEW TASK
+            form(action='/tasks', method='POST')
+              .form-group
+                input.form-control(type='text', name='text', placeholder='Add text task', autofocus='')
+              span.float-right
+                button.btn.btn-info.btn-lg(type='submit') Add Task
+        hr
+        .row
+          .col-12.col-sm-6
+            .card
+              .card-header.bg-secondary.text-white
+                h5.card-title.no-margin LIST TODOS
+              .card-body
+                ul.list-group
+                each todo in todos
+                  li.list-group-item= todo.text
+                    span.float-right
+                      a(href=`tasks/done/${todo._id}`, title="Mark Task Done") ✅
+          .col-12.col-sm-6
+            .card
+              .card-header.bg-secondary.text-white
+                h5.card-title.no-margin LIST DONES
+              .card-body
+                ul.list-group
+                each done in dones
+                  li.list-group-item= done.text
+                    span.float-right
+                      a(href=`tasks/remove/${done._id}`, title="Remove Task") ❌
+    script(src='/static/vendor/jquery/3.3.1/jquery-3.3.1.min.js')
+    script(src='/static/vendor/popper/1.14.3/popper.min.js')
+    script(src='/static/vendor/bootstrap/4.1.0/js/bootstrap.min.js')

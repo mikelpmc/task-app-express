@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EXPRESS TASK APP</title>
+
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="static/vendor/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/styles/main.css">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1>
+            <img src="static/images/express-logo.png" class="img-fluid logo" alt="Express logo">
+            <span class="text-warning">Ex</span>press Task App
+        </h1>
+    </div>
+    <div class="container-fluid">
+        <div class="card card-container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <h4>ADD NEW TASK</h4>
+                    <form action="/tasks" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="text" placeholder="Add text task" autofocus>
+                        </div>
+
+                        <span class="float-right">
+                            <button type="submit" class="btn btn-info btn-lg">Add Task</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="card-title no-margin">LIST TODOS</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <% todos.forEach(todo => { %>
+                                    <li class="list-group-item">
+                                        <%= todo.text %>
+                                            <span class="float-right">
+                                                <a href="/tasks/done/<%= todo._id %>" title="Mark task done">✅</a>
+                                            </span>
+                                    </li>
+                                    <% }); 
+                                %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="card-title no-margin">LIST DONES</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <% 
+                                        dones.forEach(done => { %>
+                                    <li class="list-group-item">
+                                        <%= done.text %>
+                                            <span class="float-right">
+                                                <a href="/tasks/remove/<%= done._id %>" title="Remove task">❌</a>
+                                            </span>
+                                    </li>
+                                    <% 
+                                        }); 
+                                    %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/vendor/jquery/3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="static/vendor/popper/1.14.3/popper.min.js"></script>
+    <script src="static/vendor/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
